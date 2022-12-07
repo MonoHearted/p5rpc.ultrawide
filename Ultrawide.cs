@@ -13,7 +13,7 @@ namespace p5rpc.ultrawide
         [Function(new[] { Register.rdx, Register.rcx, Register.r8 }, Register.rax, false)]
         public delegate void SetResolution(int width, long dest, int height);
 
-        [Function(new[] { Register.rcx, Register.rdx }, Register.rax, false)]
+        [Function(new[] { Register.rcx, Register.rdx }, Register.rax, true)]
         public delegate void ReadCamera(int p_camera, int _);
 
         private IHook<SetResolution> _setResolutionHook;
@@ -28,14 +28,14 @@ namespace p5rpc.ultrawide
             var memory = Memory.Instance;
             using var scanner = new Scanner((byte*)baseAddress, exeSize);
 
-            var resolutionResult = scanner.FindPattern("F3 0F 59 ?? ?? ?? ?? ?? F3 48 ?? ?? ?? 3B ?? 72 ?? 0F ?? ?? F3 48 ?? ?? ?? F3 0F 59");
+            var resolutionResult = scanner.FindPattern("F3 0F 59 05 ?? ?? ?? ?? F3 48 ?? ?? ?? 3B ?? 72 ?? 0F 57 ?? F3 48 ?? ?? ?? F3 0F 59 05");
             if (!resolutionResult.Found)
                 throw new Exception("Signature for getting resolution not found.");
 
             var resolutionCodeAddress = baseAddress + resolutionResult.Offset;
             var resolutionPointer = Util.GetAddressFromGlobalRef(resolutionCodeAddress + 25, 8);
 
-            var setResolutionResult = scanner.FindPattern("85 D2 7E 0C 45 85 C0 7E 07 89 51 1C 44 89 41 20");
+            var setResolutionResult = scanner.FindPattern("85 D2 7E ?? 45 85 C0 7E ?? 89 51 1C 44 89 41 20");
             if (!setResolutionResult.Found)
                 throw new Exception("Resolution Setter not found.");
 
