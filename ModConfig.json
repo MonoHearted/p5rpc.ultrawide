@@ -1,0 +1,29 @@
+{
+  "ModId": "p5rpc.ultrawide",
+  "ModName": "Ultrawide Support for P5RPC",
+  "ModAuthor": "Starbloom",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Gets rid of the pesky black bars when playing at 21:9 or 32:9, and adjusts aspect ratio accordingly",
+  "ModDll": "p5rpc.ultrawide.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/p5rpc.ultrawide.dll",
+  "ModR2RManagedDll64": "x64/p5rpc.ultrawide.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": false,
+  "HasExports": false,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "p5rpc.ultrawide.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks",
+    "Reloaded.Memory.SigScan.ReloadedII"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "p5r.exe"
+  ],
+  "ProjectUrl": ""
+}
