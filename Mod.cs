@@ -59,7 +59,7 @@ namespace p5rpc.ultrawide
 
             // TODO: Implement some mod logic
 
-            _ultrawide = new Ultrawide(_hooks, _logger, _modLoader);
+            _ultrawide = new Ultrawide(_hooks, _logger, _modLoader, _configuration);
         }
 
         #region Standard Overrides

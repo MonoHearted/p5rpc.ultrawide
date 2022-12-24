@@ -25,40 +25,55 @@ namespace p5rpc.ultrawide.Configuration
             The `DefaultValue` attribute is used as part of the `Reset` button in Reloaded-Launcher.
         */
 
-        [DisplayName("String")]
-        [Description("This is a string.")]
-        [DefaultValue("Default Name")]
-        public string String { get; set; } = "Default Name";
+        //[DisplayName("String")]
+        //[Description("This is a string.")]
+        //[DefaultValue("Default Name")]
+        //public string String { get; set; } = "Default Name";
 
-        [DisplayName("Int")]
-        [Description("This is an int.")]
-        [DefaultValue(42)]
-        public int Integer { get; set; } = 42;
+        //[DisplayName("Int")]
+        //[Description("This is an int.")]
+        //[DefaultValue(42)]
+        //public int Integer { get; set; } = 42;
 
-        [DisplayName("Bool")]
-        [Description("This is a bool.")]
-        [DefaultValue(true)]
-        public bool Boolean { get; set; } = true;
+        //[DisplayName("Bool")]
+        //[Description("This is a bool.")]
+        //[DefaultValue(true)]
+        //public bool Boolean { get; set; } = true;
 
-        [DisplayName("Float")]
-        [Description("This is a floating point number.")]
-        [DefaultValue(6.987654F)]
-        public float Float { get; set; } = 6.987654F;
+        //[DisplayName("Float")]
+        //[Description("This is a floating point number.")]
+        //[DefaultValue(6.987654F)]
+        //public float Float { get; set; } = 6.987654F;
 
-        [DisplayName("Enum")]
-        [Description("This is an enumerable.")]
-        [DefaultValue(SampleEnum.ILoveIt)]
-        public SampleEnum Reloaded { get; set; } = SampleEnum.ILoveIt;
+        //[DisplayName("Enum")]
+        //[Description("This is an enumerable.")]
+        //[DefaultValue(SampleEnum.ILoveIt)]
+        //public SampleEnum Reloaded { get; set; } = SampleEnum.ILoveIt;
 
-        public enum SampleEnum
-        {
-            NoOpinion,
-            Sucks,
-            IsMediocre,
-            IsOk,
-            IsCool,
-            ILoveIt
-        }
+        //public enum SampleEnum
+        //{
+        //    NoOpinion,
+        //    Sucks,
+        //    IsMediocre,
+        //    IsOk,
+        //    IsCool,
+        //    ILoveIt
+        //}
+
+        [DisplayName("Enable Resolution Override")]
+        [Description("Forces a resolution.")]
+        [DefaultValue(false)]
+        public bool Override { get; set; } = false;
+
+        [DisplayName("Width Override")]
+        [Description("Custom Resolution Width")]
+        [DefaultValue(0)]
+        public int Width { get; set; } = 0;
+
+        [DisplayName("Height Override")]
+        [Description("Custom Resolution Height")]
+        [DefaultValue(0)]
+        public int Height { get; set; } = 0;
     }
 
     /// <summary>

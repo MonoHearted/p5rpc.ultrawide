@@ -4,7 +4,9 @@ using Reloaded.Mod.Interfaces;
 using System.Diagnostics;
 using Reloaded.Memory.Sigscan;
 using Reloaded.Memory.Sources;
+using p5rpc.ultrawide.Configuration;
 using Register = Reloaded.Hooks.Definitions.X64.FunctionAttribute.Register;
+using p5rpc.ultrawide.Template.Configuration;
 
 namespace p5rpc.ultrawide
 {
@@ -18,7 +20,8 @@ namespace p5rpc.ultrawide
 
         private IHook<SetResolution> _setResolutionHook;
         private IHook<ReadCamera> _cameraHook;
-        public Ultrawide(IReloadedHooks hooks, ILogger logger, IModLoader modLoader)
+        private IAsmHook _testAspectRatioHook;
+        public Ultrawide(IReloadedHooks hooks, ILogger logger, IModLoader modLoader, Config configuration)
         {
             var thisProcess = Process.GetCurrentProcess();
             var baseAddress = thisProcess.MainModule.BaseAddress;
@@ -67,6 +70,11 @@ namespace p5rpc.ultrawide
 
             void SetResolutionImpl(int width, long dest, int height)
             {
+                if (configuration.Override)
+                {
+                    width = configuration.Width != 0 ? configuration.Width : width;
+                    height = configuration.Height != 0 ? configuration.Height : height;
+                }
                 currentAspect = (float)width / height;
                 memory.SafeWrite(resolutionPointer, currentAspect);
                 logger.WriteLine($"SetResolution called: {width}x{height}, Resolution is {*(float*)resolutionPointer:0.000}. Function pointer is 0x{baseAddress + setResolutionResult.Offset:x}.");
